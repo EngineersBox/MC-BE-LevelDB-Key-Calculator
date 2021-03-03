@@ -1,4 +1,4 @@
-package lib
+package chunks
 
 const (
 	ChunkVersion        = 0x2c
