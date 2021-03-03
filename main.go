@@ -24,7 +24,7 @@ func main() {
 
 	// Append dimension keys if nether or end
 	if *worldType == "nether" {
-		levelDBKey.WriteString("FFFFFFFF")
+		levelDBKey.WriteString("ffffffff")
 	} else if *worldType == "end" {
 		levelDBKey.WriteString("01000000")
 	}

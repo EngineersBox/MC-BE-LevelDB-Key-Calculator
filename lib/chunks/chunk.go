@@ -8,10 +8,9 @@ import (
 )
 
 const (
-	ChunkSizeX        = 16
-	SubChunkSizeY     = 16
-	ChunkSizeZ        = 16
-	SubChunkPrefixTag = 0x2f
+	ChunkSizeX    = 16
+	SubChunkSizeY = 16
+	ChunkSizeZ    = 16
 )
 
 func ChunkCoordLittleEndian(levelDBKey *strings.Builder, coord int, chunkSize int) {
