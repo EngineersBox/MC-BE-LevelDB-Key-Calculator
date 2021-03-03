@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/EngineersBox/MC-BE-LevelDB-Key-Calculator/lib/chunk"
+	chunks "github.com/EngineersBox/MC-BE-LevelDB-Key-Calculator/lib/chunks"
 )
 
 func main() {
@@ -18,9 +18,9 @@ func main() {
 
 	var levelDBKey strings.Builder
 	// Append the X chunk coord
-	chunk.ChunkCoordLittleEndian(&levelDBKey, *xCoord, chunk.ChunkSizeX)
+	chunks.ChunkCoordLittleEndian(&levelDBKey, *xCoord, chunks.ChunkSizeX)
 	// Append the Y chunk coord
-	chunk.ChunkCoordLittleEndian(&levelDBKey, *zCoord, chunk.ChunkSizeZ)
+	chunks.ChunkCoordLittleEndian(&levelDBKey, *zCoord, chunks.ChunkSizeZ)
 
 	// Append dimension keys if nether or end
 	if *worldType == "nether" {
@@ -30,9 +30,9 @@ func main() {
 	}
 
 	// Add the subchunk prefix (47 = 0x2f)
-	levelDBKey.WriteString(fmt.Sprintf("%x", chunk.SubChunkPrefixTag))
+	levelDBKey.WriteString(fmt.Sprintf("%x", chunks.SubChunkPrefixTag))
 
-	yChunk := *yCoord / chunk.SubChunkSizeY
+	yChunk := *yCoord / chunks.SubChunkSizeY
 	if yChunk < 10 {
 		// If the value is less than 10, add a 0 to ensure
 		// the string hex value is prefixed properly

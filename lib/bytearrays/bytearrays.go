@@ -5,9 +5,7 @@ import (
 	"unsafe"
 )
 
-type ByteArrays struct{}
-
-func (ByteArrays) IntToByteArray(num int32) []byte {
+func IntToByteArray(num int32) []byte {
 	// Get the size of the int in bytes
 	size := int(unsafe.Sizeof(num))
 	// Pre-fill a blank slice with null bytes to fit the int size
@@ -22,7 +20,7 @@ func (ByteArrays) IntToByteArray(num int32) []byte {
 	return arr
 }
 
-func (ByteArrays) ByteArrayToInt(arr []byte) int32 {
+func ByteArrayToInt(arr []byte) int32 {
 	// Pre-create an int32 to place bytes into
 	val := int32(0)
 	// Get the size of the byte array
@@ -35,7 +33,7 @@ func (ByteArrays) ByteArrayToInt(arr []byte) int32 {
 	return val
 }
 
-func (ByteArrays) reverseAny(s interface{}) {
+func ReverseAny(s interface{}) {
 	// Reflectively get the value of the slice size
 	n := reflect.ValueOf(s).Len()
 	// Create a swapper that will perform actions on the slice
