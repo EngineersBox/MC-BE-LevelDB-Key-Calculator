@@ -69,7 +69,7 @@ Each chunk is `16x16x256` (X, Z, Y), and the subchunk block data keys are `16` h
 - chunk X = `413 / 16 = 25` or `0x19` signed 32-bit integer in little endian byte order (`[0x19,0, 0, 0] == 19000000`)
 - chunk Z = `54 / 16 = 3` (`[0x3, 0, 0, 0] == 03000000`) 
 
-So all keys beginning with `1900000003000000` are about this coordinate's chunk. (In the overworld; other dimensions add a 32-bit dimension ID, so the same coordinates in the Nether I think have keys that start with `1900000003000000FFFFFFFF` and `190000000300000001000000` for the End.)
+So all keys beginning with `1900000003000000` are about this coordinate's chunk. (In the overworld; other dimensions add a 32-bit dimension ID, so the same coordinates in the Nether I think have keys that start with `1900000003000000ffffffff` and `190000000300000001000000` for the End.)
 
 The tags and subchunk indexes are 8-bit values. (Unsigned? Not sure it matters as there are no negative Y chunk coordinates and no tags < `0` or > `127`.)
 
