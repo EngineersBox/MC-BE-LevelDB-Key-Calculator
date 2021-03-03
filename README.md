@@ -51,10 +51,12 @@ For example, using the coordinates `X: 413, Z: 54, Y: 105`, the coresponding chu
 ```
 
 *Legend:*
-* `LE` = little endian `int32`
-* `BE` big endian `int32`
-* `Nether Key` = `0xffffffff`
-* `End Key` = `0x01000000`
+| Key          | Expansion     |
+|--------------|---------------|
+| `LE`         | Little Endian |
+| `BE`         | Big Endian    |
+| `Nether Key` | `0xffffffff`  |
+| `End Key`    | `0x01000000`  |
 
 ### Manually Calculating a Hex Key
 
