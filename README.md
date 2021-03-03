@@ -64,19 +64,19 @@ X, Y, Z is the typical coordinate order, but when dealing with the data we find 
 
 All division below is of course integer division. The remainder/modulus will be used to find the byte offset within the subchunk data. X, Z, and dimension are 32-bit signed integers in little endian byte order. In the examples below, I've bolded the chunk Z coordinate for clarity.
 
-Each chunk is 16x16x256 (X,Z,Y), and the subchunk block data keys are 16 high. So for x, z, y coordinates of 413, 54, 105:
+Each chunk is `16x16x256` (X, Z, Y), and the subchunk block data keys are `16` high. So for x, z, y coordinates of `413, 54, 105`:
 
-- chunk X = 413 / 16 = 25 or 0x19 signed 32-bit integer in little endian byte order ([0x19,0, 0, 0] == 19000000)
-- chunk Z = 54 / 16 = 3 ([0x3, 0, 0, 0] == **03000000**) 
+- chunk X = `413 / 16 = 25` or `0x19` signed 32-bit integer in little endian byte order (`[0x19,0, 0, 0] == 19000000`)
+- chunk Z = `54 / 16 = 3` (`[0x3, 0, 0, 0] == 03000000`) 
 
-So all keys beginning with 19000000**03000000** are about this coordinate's chunk. (In the overworld; other dimensions add a 32-bit dimension ID, so the same coordinates in the Nether I think have keys that start with 19000000**03000000**FFFFFFFF and 19000000**03000000**01000000 for the End.)
+So all keys beginning with `1900000003000000` are about this coordinate's chunk. (In the overworld; other dimensions add a 32-bit dimension ID, so the same coordinates in the Nether I think have keys that start with `1900000003000000FFFFFFFF` and `190000000300000001000000` for the End.)
 
-The tags and subchunk indexes are 8-bit values. (Unsigned? Not sure it matters as there are no negative Y chunk coordinates and no tags <0 or > 127.)
+The tags and subchunk indexes are 8-bit values. (Unsigned? Not sure it matters as there are no negative Y chunk coordinates and no tags < `0` or > `127`.)
 
-47 ([0x2F]) is the subchunk prefix tag, so all keys beginning with 19000000**03000000**2f are the Y subchunks for this coordinate.
+`47` (`[0x2F]`) is the subchunk prefix tag, so all keys beginning with `19000000030000002f` are the Y subchunks for this coordinate.
 
-- subchunk Y = 105 / 16 = 6 ([0x*06*])
+- subchunk Y = `105 / 16 = 6` (`[0x06]`)
 
-So, the subchunk key for X=413, Z=54, Y=105 is 19000000**03000000**2f*06*
+So, the subchunk key for X=`413`, Z=`54`, Y=`105` is `19000000030000002f06`
 
 *Attribution*: This section was taken from the README.md on the McpeTool repo, see here for the full document: <https://github.com/midnightfreddie/McpeTool/tree/master/docs#how-to-convert-world-coordinates-to-leveldb-keys>
