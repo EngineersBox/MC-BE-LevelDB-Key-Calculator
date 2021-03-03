@@ -18,6 +18,7 @@ func main() {
 	flag.Parse()
 
 	var levelDBKey strings.Builder
+
 	// Append the X chunk coord
 	chunk.ChunkCoordLittleEndian(&levelDBKey, *xCoord, chunk.ChunkSizeX)
 	// Append the Y chunk coord

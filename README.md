@@ -32,7 +32,7 @@ go run main.go -x 413 -z 54 -y 105 -type nether
 
 produces:
 
-```shell
+```yaml
 190000003000000ffffffff2f06
 ```
 
@@ -40,14 +40,14 @@ produces:
 
 Minecraft Gamepedia Link: <https://minecraft.gamepedia.com/Bedrock_Edition_level_format>
 
-```
+```golang
 <LE Chunk X Coord><LE Chunk Z Coord>[<Nether Key | End Key>]<Tag Byte><BE SubChunk Y Coord>
 ```
 
-For example, using the coordinates `X: 413, Z: 54, Y: 105`, the coresponding chunk key is:
+For example, using the coordinates `X: 413, Z: 54, Y: 105`, the coresponding chunk key is (split by section):
 
-```
-19000000030000002f06
+```java
+19000000 03000000 2f 06
 ```
 
 *Legend:*
