@@ -19,6 +19,5 @@ func ChunkCoordLittleEndian(coord int, chunkSize int) int32 {
 	// Create an int32 from the little endian byte array
 	chunk := bytearrays.ByteArrayToInt(chunkBytes)
 	// Append the little endian int32
-	// (*levelDBKey).WriteString(fmt.Sprintf("%x", chunk))
 	return chunk
 }
