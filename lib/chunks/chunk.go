@@ -1,9 +1,6 @@
 package chunks
 
 import (
-	"fmt"
-	"strings"
-
 	bytearrays "github.com/EngineersBox/MC-BE-LevelDB-Key-Calculator/lib/bytearrays"
 )
 
@@ -14,7 +11,7 @@ const (
 	SubChunkSizeY = 16
 )
 
-func ChunkCoordLittleEndian(levelDBKey *strings.Builder, coord int, chunkSize int) {
+func ChunkCoordLittleEndian(coord int, chunkSize int) int32 {
 	// Convert an int32 into big endian byte array
 	chunkBytes := bytearrays.IntToByteArray(int32(coord / chunkSize))
 	// Reverse the big endian byte array to get little endian format
@@ -22,5 +19,6 @@ func ChunkCoordLittleEndian(levelDBKey *strings.Builder, coord int, chunkSize in
 	// Create an int32 from the little endian byte array
 	chunk := bytearrays.ByteArrayToInt(chunkBytes)
 	// Append the little endian int32
-	(*levelDBKey).WriteString(fmt.Sprintf("%x", chunk))
+	// (*levelDBKey).WriteString(fmt.Sprintf("%x", chunk))
+	return chunk
 }
