@@ -10,10 +10,11 @@ import (
 )
 
 func main() {
-	xCoord := flag.Int("x", 0, "X Coordinate")
-	yCoord := flag.Int("y", 0, "Y Coordinate")
-	zCoord := flag.Int("z", 0, "Z Coordinate")
-	worldType := flag.String("type", "overworld", "<overworld | nether | end>")
+	var xCoord *int = flag.Int("x", 0, "-x <int>")
+	var yCoord *int = flag.Int("y", 0, "-y <int>")
+	var zCoord *int = flag.Int("z", 0, "-z <int>")
+	var worldType *string = flag.String("type", "overworld", "-type <overworld | nether | end>")
+	var tagType *string = flag.String("tag", "SubChunkPrefix", "-tag <TagType>")
 
 	flag.Parse()
 
@@ -32,7 +33,7 @@ func main() {
 	}
 
 	// Add the subchunk prefix (47 = 0x2f)
-	levelDBKey.WriteString(fmt.Sprintf("%x", tagbytes.SubChunkPrefix))
+	levelDBKey.WriteString(fmt.Sprintf("%x", tagbytes.TagTypes[*tagType]))
 
 	yChunk := *yCoord / chunk.SubChunkSizeY
 	if yChunk < 10 {
