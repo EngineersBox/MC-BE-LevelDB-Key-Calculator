@@ -28,13 +28,13 @@ go run main.go [OPTIONS]
 For example, running the following:
 
 ```shell
-go run main.go -x 413 -z 54 -y 105 -type nether
+go run main.go -x 413 -z 54 -y 105 -type nether -tag PendingTicks
 ```
 
 produces:
 
 ```yaml
-190000003000000ffffffff2f06
+190000003000000ffffffff3306
 ```
 
 ## Hex Key Format
