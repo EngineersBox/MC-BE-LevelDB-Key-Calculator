@@ -11,12 +11,13 @@ First step is to clone the repo and `cd` into it, go ahead and do that and come 
 
 ### Command Options
 
-| Option  | Type     | Default Value | Valid Values                     |
-|---------|----------|---------------|----------------------------------|
-| `-x`    | `int32`  | `0`           | Any valid integer value          |
-| `-y`    | `int32`  | `0`           | Any valid integer value          |
-| `-z`    | `int32`  | `0`           | Any valid integer value          |
-| `-type` | `string` | `overworld`   | `overworld`<br>`nether`<br>`end` |
+| Option  | Type      | Default Value    | Valid Values                                                                                                                                                                                                                                                                           |
+|---------|-----------|------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `-x`    | `int32`   | `0`              | Any valid integer value                                                                                                                                                                                                                                                                |
+| `-y`    | `int32`   | `0`              | Any valid integer value                                                                                                                                                                                                                                                                |
+| `-z`    | `int32`   | `0`              | Any valid integer value                                                                                                                                                                                                                                                                |
+| `-type` | `string`  | `overworld`      | `overworld`<br>`nether`<br>`end`                                                                                                                                                                                                                                                       |
+| `-tag`  | `TagType` | `SubChunkPrefix` | `ChunkVersion`<br>`Data2D`<br>`Data2DLegacy`<br>`SubChunkPrefix`<br>`LegacyTerrain`<br>`BlockEntity`<br>`Entity`<br>`PendingTicks`<br>`BlockExtraData`<br>`BiomeState`<br>`UNUSED`<br>`BorderBlocks`<br>`HardCodedSpawnAreas`<br>`RandomTicks`<br>`Checksums`<br>`ChunkVersionV116100` |
 
 ### Command Syntax
 
