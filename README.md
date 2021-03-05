@@ -28,7 +28,7 @@ go run main.go hexkey [OPTIONS]
 For example, running the following:
 
 ```shell
-go run main.go -x 413 -z 54 -y 105 -type nether -tag PendingTicks
+go run main.go hexkey -x 413 -z 54 -y 105 -type nether -tag PendingTicks
 ```
 
 produces:
