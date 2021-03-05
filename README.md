@@ -22,7 +22,7 @@ First step is to clone the repo and `cd` into it, go ahead and do that and come 
 ### Command Syntax
 
 ```shell
-go run main.go [OPTIONS]
+go run main.go hexkey [OPTIONS]
 ```
 
 For example, running the following:
