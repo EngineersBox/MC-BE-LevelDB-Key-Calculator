@@ -8,10 +8,14 @@ import (
 	world "github.com/EngineersBox/MC-BE-LevelDB-Key-Calculator/lib/world"
 )
 
+func padRightSideFixed(str string, item string, count int) string {
+	return (str + strings.Repeat(item, count))[:8]
+}
+
 type HexKey struct {
-	ChunkX   int32
+	ChunkX   uint32
 	ChunkY   int8
-	ChunkZ   int32
+	ChunkZ   uint32
 	WorldKey world.WorldType
 	TagKey   tagbytes.TagType
 }
@@ -20,10 +24,10 @@ func (hk *HexKey) ToString() string {
 	var levelDBKey strings.Builder
 
 	// Append the X subchunk coord
-	levelDBKey.WriteString(fmt.Sprintf("%x", hk.ChunkX))
+	levelDBKey.WriteString(padRightSideFixed(fmt.Sprintf("%x", hk.ChunkX), "0", 8))
 
 	// Append the Z subchunk coord
-	levelDBKey.WriteString(fmt.Sprintf("%x", hk.ChunkZ))
+	levelDBKey.WriteString(padRightSideFixed(fmt.Sprintf("%x", hk.ChunkZ), "0", 8))
 
 	// Append dimension keys if nether or end
 	levelDBKey.WriteString(string(hk.WorldKey))

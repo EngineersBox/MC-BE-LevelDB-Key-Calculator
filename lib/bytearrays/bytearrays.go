@@ -1,6 +1,8 @@
 package bytearrays
 
 import (
+	"bytes"
+	"math/big"
 	"reflect"
 	"unsafe"
 )
@@ -46,4 +48,25 @@ func ReverseAny(s interface{}) {
 		// [5, 4, 3, 2, 5] <-- 2nd pass [DONE]
 		swap(i, j)
 	}
+}
+
+func TwosComplement(val int32) []byte {
+	n := big.NewInt(int64(val))
+
+	var r []byte
+	if n.Cmp(big.NewInt(0)) != -1 {
+		r = n.Bytes()
+	} else {
+		mask := big.NewInt(1)
+		mask.Lsh(mask, 64)
+
+		r = n.Add(n, mask).Bytes()
+	}
+
+	res := bytes.NewBuffer([]byte{})
+	for i := 0; i < 8-len(r); i++ {
+		res.WriteByte(0)
+	}
+	res.Write(r)
+	return res.Bytes()[4:8]
 }

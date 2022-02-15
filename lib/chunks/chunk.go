@@ -1,6 +1,8 @@
 package chunks
 
 import (
+	"encoding/binary"
+
 	bytearrays "github.com/EngineersBox/MC-BE-LevelDB-Key-Calculator/lib/bytearrays"
 )
 
@@ -11,13 +13,22 @@ const (
 	SubChunkSizeY = 16
 )
 
-func ChunkCoordLittleEndian(coord int, chunkSize int) int32 {
+func ChunkCoordLittleEndian(coord int, chunkSize int, chunkCoords bool) uint32 {
 	// Convert an int32 into big endian byte array
-	chunkBytes := bytearrays.IntToByteArray(int32(coord / chunkSize))
-	// Reverse the big endian byte array to get little endian format
-	bytearrays.ReverseAny(chunkBytes)
+	var baseCoord int32
+	if chunkCoords {
+		baseCoord = int32(coord)
+	} else {
+		baseCoord = int32(coord / chunkSize)
+	}
+	var chunkBytes []byte
+	if baseCoord >= 0 {
+		chunkBytes = bytearrays.IntToByteArray(baseCoord)
+	} else {
+		chunkBytes = bytearrays.TwosComplement(baseCoord)
+	}
 	// Create an int32 from the little endian byte array
-	chunk := bytearrays.ByteArrayToInt(chunkBytes)
+	chunk := binary.LittleEndian.Uint32(chunkBytes)
 	// Append the little endian int32
 	return chunk
 }

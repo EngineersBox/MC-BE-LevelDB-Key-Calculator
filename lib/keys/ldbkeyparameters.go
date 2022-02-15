@@ -17,8 +17,9 @@ type Coordinates struct {
 
 // Attributes ... Stores the required world and chunk tag attributes
 type Attributes struct {
-	WorldType *string
-	TagType   *string
+	WorldType   *string
+	TagType     *string
+	ChunkCoords *bool
 }
 
 // LDBKeyParameters .. Stores all required parameters to create the hex key
@@ -29,9 +30,9 @@ type LDBKeyParameters struct {
 
 func (lkp *LDBKeyParameters) CalculateHexKey() (hexKey HexKey) {
 	// Append the X chunk coord
-	hexKey.ChunkX = chunk.ChunkCoordLittleEndian(*lkp.Coords.X, chunk.ChunkSizeX)
+	hexKey.ChunkX = chunk.ChunkCoordLittleEndian(*lkp.Coords.X, chunk.ChunkSizeX, *lkp.Attrs.ChunkCoords)
 	// Append the Z chunk coord
-	hexKey.ChunkZ = chunk.ChunkCoordLittleEndian(*lkp.Coords.Z, chunk.ChunkSizeZ)
+	hexKey.ChunkZ = chunk.ChunkCoordLittleEndian(*lkp.Coords.Z, chunk.ChunkSizeZ, *lkp.Attrs.ChunkCoords)
 
 	// Append dimension keys if nether or end
 	enumWorldTypeValue, ok := world.WorldTypes[*lkp.Attrs.WorldType]
@@ -48,7 +49,11 @@ func (lkp *LDBKeyParameters) CalculateHexKey() (hexKey HexKey) {
 	hexKey.TagKey = enumTagTypeValue
 
 	// Append the Y chunk coord
-	hexKey.ChunkY = int8(*lkp.Coords.Y / chunk.SubChunkSizeY)
+	if *lkp.Attrs.ChunkCoords {
+		hexKey.ChunkY = int8(*lkp.Coords.Y)
+	} else {
+		hexKey.ChunkY = int8(*lkp.Coords.Y / chunk.SubChunkSizeY)
+	}
 
 	return hexKey
 }

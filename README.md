@@ -16,8 +16,10 @@ First step is to clone the repo and `cd` into it, go ahead and do that and come 
 | `-x`    | `int32`   | `0`              | Any valid integer value                                                                                                                                                                                                                                                                |
 | `-y`    | `int32`   | `0`              | Any valid integer value                                                                                                                                                                                                                                                                |
 | `-z`    | `int32`   | `0`              | Any valid integer value                                                                                                                                                                                                                                                                |
+| `-chunkCoords`    | `bool`   | `false` | Any valid boolean value                                                                                                                                                                                                                                                                |
 | `-type` | `string`  | `overworld`      | `overworld`<br>`nether`<br>`end`                                                                                                                                                                                                                                                       |
 | `-tag`  | `TagType` | `SubChunkPrefix` | `ChunkVersion`<br>`Data2D`<br>`Data2DLegacy`<br>`SubChunkPrefix`<br>`LegacyTerrain`<br>`BlockEntity`<br>`Entity`<br>`PendingTicks`<br>`BlockExtraData`<br>`BiomeState`<br>`UNUSED`<br>`BorderBlocks`<br>`HardCodedSpawnAreas`<br>`RandomTicks`<br>`Checksums`<br>`ChunkVersionV116100` |
+
 
 ### Command Syntax
 
@@ -45,10 +47,16 @@ Minecraft Gamepedia Link: <https://minecraft.gamepedia.com/Bedrock_Edition_level
 <LE Chunk X Coord><LE Chunk Z Coord>[<Nether Key | End Key>]<Tag Byte><BE SubChunk Y Coord>
 ```
 
-For example, using the coordinates `X: 413, Z: 54, Y: 105`, the coresponding chunk key is (split by section):
+For example, using the coordinates `X: 413, Y: 105, Z: 54`, the coresponding chunk key is (split by section):
 
-```java
+```yaml
 19000000 03000000 2f 06
+```
+
+Another example, using the coordinates `X: 110, Y: 2, Z: -22` with chunk coord format, the coresponding chunk key is (split by section):
+
+```yaml
+6e000000 eaffffff 2f 02
 ```
 
 *Legend:*

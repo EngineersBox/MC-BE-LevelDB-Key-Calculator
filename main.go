@@ -62,8 +62,9 @@ func main() {
 			Z: hexKeyCommand.Int("z", 0, "-z <int>"),
 		},
 		Attrs: keys.Attributes{
-			WorldType: hexKeyCommand.String("type", "Overworld", "-type <overworld | nether | end>"),
-			TagType:   hexKeyCommand.String("tag", "SubChunkPrefix", "-tag <TagType>"),
+			WorldType:   hexKeyCommand.String("type", "Overworld", "-type <overworld | nether | end>"),
+			TagType:     hexKeyCommand.String("tag", "SubChunkPrefix", "-tag <TagType>"),
+			ChunkCoords: hexKeyCommand.Bool("chunkCoords", false, "-chunkCoords <true | false>"),
 		},
 	}
 
