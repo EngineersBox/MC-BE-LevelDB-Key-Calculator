@@ -9,7 +9,7 @@ const (
 )
 
 var WorldTypes = map[string]WorldType{
-	"Overworld": Overworld,
-	"Nether":    Nether,
-	"End":       End,
+	"overworld": Overworld,
+	"nether":    Nether,
+	"end":       End,
 }

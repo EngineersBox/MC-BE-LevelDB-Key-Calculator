@@ -2,6 +2,7 @@ package lib
 
 import (
 	"fmt"
+	"strings"
 
 	chunk "github.com/EngineersBox/MC-BE-LevelDB-Key-Calculator/lib/chunks"
 	tagbytes "github.com/EngineersBox/MC-BE-LevelDB-Key-Calculator/lib/chunks"
@@ -35,9 +36,10 @@ func (lkp *LDBKeyParameters) CalculateHexKey() (hexKey HexKey) {
 	hexKey.ChunkZ = chunk.ChunkCoordLittleEndian(*lkp.Coords.Z, chunk.ChunkSizeZ, *lkp.Attrs.ChunkCoords)
 
 	// Append dimension keys if nether or end
-	enumWorldTypeValue, ok := world.WorldTypes[*lkp.Attrs.WorldType]
+	worldType := strings.ToLower(*lkp.Attrs.WorldType)
+	enumWorldTypeValue, ok := world.WorldTypes[worldType]
 	if !ok {
-		panic(fmt.Sprintf("No such world type: %s", *lkp.Attrs.WorldType))
+		panic(fmt.Sprintf("No such world type: %s", worldType))
 	}
 	hexKey.WorldKey = enumWorldTypeValue
 
